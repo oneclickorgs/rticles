@@ -264,6 +264,8 @@ module Rticles
       end
       paragraph_groups = paragraph_groups.compact
 
+      return "" if paragraph_groups.empty?
+
       # Handle last paragraph group separately so we can do list punctuation if necessary.
 
       paragraph_groups_except_last = paragraph_groups[0..-2]

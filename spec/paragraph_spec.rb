@@ -366,6 +366,28 @@ describe Rticles::Paragraph do
 
         html.should be_equivalent_to(expected_html)
       end
+
+      context "when the choices cause an entire paragraph group to be omitted" do
+        before(:each) do
+          parent = @document.top_level_paragraphs.create(
+            :body => "The following optional rules will apply",
+            :after_id => @document.top_level_paragraphs.all[5].id
+          )
+          @document.paragraphs.create(
+            :body => '#rticles#true#option_one Option one',
+            :parent_id => parent.id
+          )
+          @document.paragraphs.create(
+            :body => '#rticles#true#option_two Option two',
+            :parent_id => parent.id
+          )
+          @document.choices = {option_one: false, option_two: false}
+        end
+
+        it "does not raise an error" do
+          expect{@document.to_html}.to_not raise_error
+        end
+      end
     end
 
     context "without indexes" do
