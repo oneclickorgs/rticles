@@ -17,3 +17,8 @@ gem "sass"
 
 # To use debugger
 # gem 'debugger'
+
+group :development do
+  # equivalent-xml's RSpec 3-compatibility fixes haven't been released yet.
+  gem 'equivalent-xml', git: 'https://github.com/mbklein/equivalent-xml.git', ref: '381ab6b93a99b17ec313a6af3ac2bf793c266af0'
+end

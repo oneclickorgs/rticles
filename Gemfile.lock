@@ -1,3 +1,11 @@
+GIT
+  remote: https://github.com/mbklein/equivalent-xml.git
+  revision: 381ab6b93a99b17ec313a6af3ac2bf793c266af0
+  ref: 381ab6b93a99b17ec313a6af3ac2bf793c266af0
+  specs:
+    equivalent-xml (0.4.2)
+      nokogiri (>= 1.4.3)
+
 PATH
   remote: .
   specs:
@@ -48,8 +56,6 @@ GEM
       thor
     diff-lcs (1.2.5)
     docile (1.1.1)
-    equivalent-xml (0.4.0)
-      nokogiri (>= 1.4.3)
     erubis (2.7.0)
     haml (4.0.4)
       tilt
@@ -139,7 +145,7 @@ PLATFORMS
 
 DEPENDENCIES
   coveralls
-  equivalent-xml
+  equivalent-xml!
   haml
   jquery-rails
   nokogiri
