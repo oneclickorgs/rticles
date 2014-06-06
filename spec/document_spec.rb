@@ -12,14 +12,14 @@ describe Rticles::Document do
       expect {
         @document = Rticles::Document.from_yaml(yaml)
       }.to change{Rticles::Paragraph.count}.by(4)
-      @document.outline(:with_index => true, :for_display => true).should == [
+      expect(@document.outline(:with_index => true, :for_display => true)).to eq([
         '1 Paragraph 1',
         [
           '1.1 Paragraph 1.1',
           '1.2 Paragraph 1.2'
         ],
         '2 Paragraph 2'
-      ]
+      ])
     end
 
     describe "headings" do
@@ -30,13 +30,13 @@ describe Rticles::Document do
       end
 
       it "works with headings" do
-        @document.top_level_paragraphs.first.should be_heading
+        expect(@document.top_level_paragraphs.first).to be_heading
       end
 
       it "works with sub-headings" do
         p = @document.top_level_paragraphs[20]
-        p.body.should eq "Borrowing from Members"
-        p.heading.should eq 2
+        expect(p.body).to eq "Borrowing from Members"
+        expect(p.heading).to eq 2
       end
     end
 
@@ -49,8 +49,8 @@ describe Rticles::Document do
 
       it "saves the topics" do
         objects_paragraph = Rticles::Paragraph.where(:topic => 'objects', :document_id => @document.id).first
-        objects_paragraph.should be_present
-        objects_paragraph.body.should == "The objects of the Co-operative shall be to carry on the business as a co-operative and to carry on any other trade, business or service and in particular to #rticles#objectives"
+        expect(objects_paragraph).to be_present
+        expect(objects_paragraph.body).to eq("The objects of the Co-operative shall be to carry on the business as a co-operative and to carry on any other trade, business or service and in particular to #rticles#objectives")
       end
     end
   end
@@ -65,16 +65,18 @@ describe Rticles::Document do
     describe "insertion" do
       it "is displayed" do
         @document.insertions = {:organisation_name => "The One Click Orgs Association"}
-        @document.outline(:for_display => true)[0].should ==
+        expect(@document.outline(:for_display => true)[0]).to eq(
           "This is the constitution (\"Constitution\") of The One Click Orgs Association. (\"The Organisation\")"
+        )
       end
     end
 
     describe "choice" do
       it "is displayed" do
         @document.choices = {:assets => true}
-        @document.outline(:for_display => true)[2].should ==
+        expect(@document.outline(:for_display => true)[2]).to eq(
           "The Organisation may hold, transfer and dispose of material assets and intangible assets."
+        )
       end
     end
 
@@ -91,7 +93,7 @@ describe Rticles::Document do
       @document.choices = {
         :assets => true
       }
-      @document.outline(:for_display => true).should == [
+      expect(@document.outline(:for_display => true)).to eq([
         "This is the constitution (\"Constitution\") of The One Click Orgs Association. (\"The Organisation\")",
         "The Organisation has the objectives of developing OCO. (\"Objectives\")",
         "The Organisation may hold, transfer and dispose of material assets and intangible assets.",
@@ -120,7 +122,7 @@ describe Rticles::Document do
           ]
         ],
         "Members may view all Decisions on the Governance System."
-      ]
+      ])
     end
   end
 
@@ -202,10 +204,10 @@ describe Rticles::Document do
       @document.top_level_paragraphs.create(:body => "The company must keep a record of shareholdings.", :topic => 'shares')
 
       @document.choices[:single_shareholding] = true
-      @document.paragraph_numbers_for_topic('shares', true).should eq "2, 4"
+      expect(@document.paragraph_numbers_for_topic('shares', true)).to eq "2, 4"
 
       @document.choices[:single_shareholding] = false
-      @document.paragraph_numbers_for_topic('shares', true).should eq "2–3, 5"
+      expect(@document.paragraph_numbers_for_topic('shares', true)).to eq "2–3, 5"
     end
 
     it "works for a complex document" do
@@ -213,10 +215,10 @@ describe Rticles::Document do
       @document = Rticles::Document.from_yaml(yaml)
 
       @document.choices[:single_shareholding] = true
-      @document.paragraph_numbers_for_topic('shares', true).should eq "32"
+      expect(@document.paragraph_numbers_for_topic('shares', true)).to eq "32"
 
       @document.choices[:single_shareholding] = false
-      @document.paragraph_numbers_for_topic('shares', true).should eq "35–40"
+      expect(@document.paragraph_numbers_for_topic('shares', true)).to eq "35–40"
     end
 
     it "can handle multiple topics" do
@@ -226,7 +228,7 @@ describe Rticles::Document do
       @document.top_level_paragraphs.create(:body => "Other rule")
       @document.top_level_paragraphs.create(:body => "Second shares rule", :topic => 'shares')
 
-      @document.paragraph_numbers_for_topics(['shares', 'objectives'], true).should eq '1–2, 4'
+      expect(@document.paragraph_numbers_for_topics(['shares', 'objectives'], true)).to eq '1–2, 4'
     end
 
   end
@@ -238,12 +240,12 @@ describe Rticles::Document do
     end
 
     it "defaults to full decimal numbering" do
-      @paragraph.full_index.should eq "1.2.3"
+      expect(@paragraph.full_index).to eq "1.2.3"
     end
 
     it "allows customisation of the separator" do
       @document.numbering_config.separator = ' '
-      @paragraph.full_index(true, nil, @document.numbering_config).should eq "1 2 3"
+      expect(@paragraph.full_index(true, nil, @document.numbering_config)).to eq "1 2 3"
     end
 
     it "allows customisation of the list style type" do
@@ -251,7 +253,7 @@ describe Rticles::Document do
       @document.numbering_config[2].style = Rticles::Numbering::LOWER_ALPHA
       @document.numbering_config[3].style = Rticles::Numbering::LOWER_ROMAN
 
-      @paragraph.full_index(true, nil, @document.numbering_config).should eq "1.b.iii"
+      expect(@paragraph.full_index(true, nil, @document.numbering_config)).to eq "1.b.iii"
     end
 
     it "allows customisation of the number format" do
@@ -259,12 +261,12 @@ describe Rticles::Document do
 
       @document.numbering_config[2].format = '(#)'
 
-      @paragraph.full_index(true, nil, @document.numbering_config).should eq "1 (2) 3"
+      expect(@paragraph.full_index(true, nil, @document.numbering_config)).to eq "1 (2) 3"
     end
 
     it "allows setting only the innermost number should be printed" do
       @document.numbering_config.innermost_only = true
-      @paragraph.full_index(true, nil, @document.numbering_config).should eq "3"
+      expect(@paragraph.full_index(true, nil, @document.numbering_config)).to eq "3"
     end
   end
 
