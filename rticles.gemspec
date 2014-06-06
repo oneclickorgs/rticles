@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   s.add_dependency "roman-numerals", "~>0.3.0"
 
   s.add_development_dependency "sqlite3"
-  s.add_development_dependency "rspec-rails"
+  s.add_development_dependency "rspec-rails", '2.99'
   s.add_development_dependency "nokogiri"
   s.add_development_dependency "equivalent-xml"
   s.add_development_dependency "coveralls"
