@@ -19,5 +19,5 @@ gem "sass"
 # gem 'debugger'
 
 group :development do
-  gem 'equivalent-xml', '~>0.5.0'
+  gem 'equivalent-xml', '~>0.5.1'
 end
