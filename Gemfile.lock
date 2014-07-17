@@ -3,7 +3,7 @@ PATH
   specs:
     rticles (0.2.4)
       acts_as_list (>= 0.1.8)
-      rails (>= 3.2.8, < 4.2)
+      rails (>= 3.2.8, < 4.0)
       roman-numerals (~> 0.3.0)
 
 GEM
@@ -68,7 +68,7 @@ GEM
     multi_json (1.8.4)
     nokogiri (1.6.2.1)
       mini_portile (= 0.6.0)
-    polyglot (0.3.4)
+    polyglot (0.3.5)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -133,7 +133,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.39)
+    tzinfo (0.3.40)
 
 PLATFORMS
   ruby
