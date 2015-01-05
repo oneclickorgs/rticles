@@ -2,6 +2,9 @@ require 'acts_as_list'
 
 module Rticles
   class Paragraph < ActiveRecord::Base
+
+    include ActiveRecord::Acts::List
+
     attr_accessible :body, :parent_id, :after_id, :position, :before_id, :heading, :continuation,
       :name, :topic, :list
 
