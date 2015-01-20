@@ -115,7 +115,7 @@ GEM
       rspec-mocks (~> 3.1.0)
       rspec-support (~> 3.1.0)
     rspec-support (3.1.2)
-    sass (3.4.9)
+    sass (3.4.10)
     simplecov (0.9.1)
       docile (~> 1.1.0)
       multi_json (~> 1.0)
