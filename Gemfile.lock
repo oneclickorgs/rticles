@@ -48,12 +48,16 @@ GEM
       thor (~> 0.19.1)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    domain_name (0.5.24)
+      unf (>= 0.0.5, < 1.0.0)
     equivalent-xml (0.5.1)
       nokogiri (>= 1.4.3)
     erubis (2.7.0)
     haml (4.0.4)
       tilt
     hike (1.2.3)
+    http-cookie (1.0.2)
+      domain_name (~> 0.5)
     i18n (0.7.0)
     journey (1.0.4)
     jquery-rails (3.1.2)
@@ -66,7 +70,7 @@ GEM
     mime-types (1.25.1)
     mini_portile (0.6.2)
     multi_json (1.10.1)
-    netrc (0.10.2)
+    netrc (0.10.3)
     nokogiri (1.6.6.2)
       mini_portile (~> 0.6.0)
     polyglot (0.3.5)
@@ -95,7 +99,8 @@ GEM
     rake (10.4.2)
     rdoc (3.12.2)
       json (~> 1.4)
-    rest-client (1.7.2)
+    rest-client (1.8.0)
+      http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 3.0)
       netrc (~> 0.7)
     roman-numerals (0.3.0)
@@ -136,6 +141,9 @@ GEM
       polyglot
       polyglot (>= 0.3.1)
     tzinfo (0.3.42)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.1)
 
 PLATFORMS
   ruby
