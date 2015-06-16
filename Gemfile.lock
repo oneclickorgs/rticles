@@ -50,7 +50,7 @@ GEM
     docile (1.1.5)
     domain_name (0.5.24)
       unf (>= 0.0.5, < 1.0.0)
-    equivalent-xml (0.5.1)
+    equivalent-xml (0.6.0)
       nokogiri (>= 1.4.3)
     erubis (2.7.0)
     haml (4.0.4)
@@ -153,7 +153,7 @@ PLATFORMS
 
 DEPENDENCIES
   coveralls
-  equivalent-xml (~> 0.5.1)
+  equivalent-xml (~> 0.6)
   haml
   jquery-rails
   nokogiri
