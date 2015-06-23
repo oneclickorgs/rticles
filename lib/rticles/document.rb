@@ -115,15 +115,15 @@ module Rticles
             list = true
           end
 
-          document.paragraphs.create(
-            :parent_id => parent ? parent.id : nil,
-            :body => text_or_sub_array,
-            :name => name,
-            :topic => topic,
-            :heading => heading,
-            :continuation => continuation,
-            :list => list
-          )
+          document.paragraphs.new.tap {|p|
+            p.parent_id = parent ? parent.id : nil
+            p.body = text_or_sub_array
+            p.name = name
+            p.topic = topic
+            p.heading = heading
+            p.continuation = continuation
+            p.list = list
+          }.save!
         when Array
           paragraphs_relation = parent ? parent.children : document.paragraphs.select{|p| p.parent_id.nil?}
           if paragraphs_relation.empty?
