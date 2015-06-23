@@ -5,9 +5,6 @@ module Rticles
 
     include ActiveRecord::Acts::List
 
-    attr_accessible :body, :parent_id, :after_id, :position, :before_id, :heading, :continuation,
-      :name, :topic, :list
-
     attr_writer :choices
 
     belongs_to :document
